@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomous Robot Fleet Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1>Autonomous Robot Fleet Dashboard</h1>
+        <p class="tagline">Simulated warehouse fleet — live positions, battery, task assignment and alerts.</p>
+      </div>
+      <div id="weatherCard" class="weather-card">Loading weather...</div>
+    </div>
+  </header>
+
+  <main class="container py-4">
+    <div id="status" class="status" role="status"></div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">Robots</div><div class="stat-value" id="statTotal">–</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">Active</div><div class="stat-value" id="statActive">–</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">Charging</div><div class="stat-value" id="statCharging">–</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">Avg battery</div><div class="stat-value" id="statBattery">–</div></div></div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="panel">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 panel-title mb-0">Warehouse floor</h2>
+            <span id="selectedHint" class="small text-muted">Select a robot, then click the floor to dispatch it</span>
+          </div>
+          <canvas id="floor"></canvas>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="panel mb-3">
+          <h2 class="h6 panel-title">Fleet</h2>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle fleet-table">
+              <thead><tr><th>Robot</th><th>Status</th><th>Battery</th></tr></thead>
+              <tbody id="fleetRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 class="h6 panel-title">Alerts</h2>
+          <ul id="alertList" class="alert-list"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
